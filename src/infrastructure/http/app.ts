@@ -4,11 +4,11 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import 'dotenv/config';
-import { router } from './routes/userRoutes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import { v1Router } from './routes';
 
 const app = express();
 
@@ -52,6 +52,7 @@ const swaggerDefinition = {
 const options = {
   swaggerDefinition,
   apis: [
+    path.resolve(__dirname, './routes/user/*.js'),
   ],
 };
 
@@ -61,7 +62,7 @@ const specs = swaggerJSDoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use('/api/', router)
+app.use('/api/', v1Router)
 const port = process.env.PORT || 3000;
 
 app.listen(Number(port), '0.0.0.0', () => {
