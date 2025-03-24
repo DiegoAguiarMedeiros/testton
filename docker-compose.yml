@@ -1,0 +1,50 @@
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    networks:
+      - backend-network
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env
+    environment:
+      TESTTON_IS_PRODUCTION: ${TESTTON_IS_PRODUCTION}
+      TESTTON_APP_SECRET: ${TESTTON_APP_SECRET}
+      TESTTON_REDIS_URL: ${TESTTON_REDIS_URL}
+      TESTTON_REDIS_PORT: ${TESTTON_REDIS_PORT}
+      TESTTON_DB_USER: ${TESTTON_DB_USER}
+      TESTTON_DB_PASS: ${TESTTON_DB_PASS}
+      TESTTON_DB_HOST: ${TESTTON_DB_HOST}
+      TESTTON_DB_NAME: ${TESTTON_DB_NAME}
+      TESTTON_DB_PORT: ${TESTTON_DB_PORT}
+
+  postgres:
+    image: postgres:15
+    ports:
+      - "${TESTTON_DB_PORT}:${TESTTON_DB_PORT}"
+    environment:
+      POSTGRES_USER: ${TESTTON_DB_USER}
+      POSTGRES_PASSWORD: ${TESTTON_DB_PASS}
+      POSTGRES_DB: ${TESTTON_DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "${TESTTON_REDIS_PORT}:${TESTTON_REDIS_PORT}"
+    networks:
+      - backend-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  backend-network:
+    driver: bridge
