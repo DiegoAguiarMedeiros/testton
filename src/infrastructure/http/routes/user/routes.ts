@@ -5,10 +5,10 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /auth:
+ * /user:
  *   post:
  *     summary: Create a new user
- *     tags: [Auth]
+ *     tags: [User]
  *     requestBody:
  *       required: true
  *       content:
@@ -28,16 +28,16 @@ const userRouter = express.Router();
  *       400:
  *         description: Bad request
  */
-userRouter.post('/',
+userRouter.post('/resgistration',
   (req, res) => createUserController.execute(req, res)
 );
 
 /**
  * @swagger
- * /auth/login:
+ * /user/login:
  *   post:
  *     summary: Login a user
- *     tags: [Auth]
+ *     tags: [User]
  *     requestBody:
  *       required: true
  *       content:
