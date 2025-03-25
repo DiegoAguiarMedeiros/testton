@@ -1,6 +1,8 @@
 import express from 'express'
 import { createUserController } from '../../controllers/user/create';
 import { loginController } from '../../controllers/user/login';
+import { getUserController } from '../../controllers/user/get';
+import { middleware } from '../..';
 
 const userRouter = express.Router();
 
@@ -62,19 +64,19 @@ userRouter.post('/login',
 
 /**
  * @swagger
- * /user/me:
+ * /user/info:
  *   get:
- *     summary: Login a user
+ *     summary: Get User Info
  *     tags: [User]
  *     responses:
  *       200:
- *         description: Login successful
+ *         description: User Info
  *       401:
  *         description: Unauthorized
  */
-// userRouter.get('/me',
-//   middleware.ensureAuthenticated(),
-//   (req, res) => getMeController.execute(req, res)
-// )
+userRouter.get('/info',
+  middleware.ensureAuthenticated(),
+  (req, res) => getUserController.execute(req, res)
+)
 
 export { userRouter };

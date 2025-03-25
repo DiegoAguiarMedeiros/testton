@@ -32,21 +32,7 @@ const swaggerDefinition = {
       url: 'http://localhost:3000/api',
       description: 'Development server',
     },
-  ],
-  components: {
-    securitySchemes: {
-      cookieAuth: {
-        type: 'apiKey',
-        in: 'cookie',
-        name: 'accessToken', 
-      },
-    },
-  },
-  security: [
-    {
-      bearerAuth: [], 
-    },
-  ],
+  ]
 };
 
 const options = {
