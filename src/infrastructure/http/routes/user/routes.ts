@@ -1,11 +1,12 @@
 import express from 'express'
-import { createUserController } from '../../controllers/user';
+import { createUserController } from '../../controllers/user/create';
+import { loginController } from '../../controllers/user/login';
 
 const userRouter = express.Router();
 
 /**
  * @swagger
- * /user:
+ * /user/resgistration:
  *   post:
  *     summary: Create a new user
  *     tags: [User]
@@ -55,9 +56,9 @@ userRouter.post('/resgistration',
  *       401:
  *         description: Unauthorized
  */
-// userRouter.post('/login',
-//   (req, res) => loginController.execute(req, res)
-// )
+userRouter.post('/login',
+  (req, res) => loginController.execute(req, res)
+)
 
 /**
  * @swagger

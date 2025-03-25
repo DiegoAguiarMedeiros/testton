@@ -1,12 +1,13 @@
 
 import * as express from 'express'
-import { CreateDTO } from '../../../../application/use-cases/user/create/CreateDTO';
-import { CreateErrors } from '../../../../application/use-cases/user/create/CreateErrors';
-import { CreateUseCase } from '../../../../application/use-cases/user/create/CreateUseCase';
-import { UniqueEntityID } from '../../../../domain/shared/UniqueEntityID';
-import { BaseController } from '../shared/BaseController';
-import { DecodedExpressRequest } from '../shared/DecodedExpressRequest';
-import { TextUtils } from '../../../../shared/TextUtils';
+import { CreateDTO } from '../../../../../application/use-cases/user/create/CreateDTO';
+import { CreateErrors } from '../../../../../application/use-cases/user/create/CreateErrors';
+import { CreateUseCase } from '../../../../../application/use-cases/user/create/CreateUseCase';
+import { UniqueEntityID } from '../../../../../domain/shared/UniqueEntityID';
+import { TextUtils } from '../../../../../shared/TextUtils';
+import { BaseController } from '../../shared/BaseController';
+import { DecodedExpressRequest } from '../../shared/DecodedExpressRequest';
+
 
 export class CreateController extends BaseController {
   private useCase: CreateUseCase;
