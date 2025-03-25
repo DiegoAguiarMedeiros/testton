@@ -1,5 +1,5 @@
-import { JWTClaims, JWTToken, RefreshToken } from "../../domain/entities/User/Jwt";
-import { User } from "../../domain/entities/User/User";
+import { JWTClaims, JWTToken, RefreshToken } from "../../domain/entities/user/Jwt";
+import { User } from "../../domain/entities/user/User";
 
 
 export interface IAuthService {

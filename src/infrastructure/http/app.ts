@@ -53,6 +53,7 @@ const options = {
   swaggerDefinition,
   apis: [
     path.resolve(__dirname, './routes/user/*.js'),
+    path.resolve(__dirname, './routes/product/*.js'),
   ],
 };
 

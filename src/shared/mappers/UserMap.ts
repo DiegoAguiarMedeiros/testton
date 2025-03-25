@@ -1,8 +1,8 @@
-import { UserDTO } from "../../domain/dto/userDTO";
-import { Email } from "../../domain/entities/User/Email";
-import { Name } from "../../domain/entities/User/Name";
-import { Password } from "../../domain/entities/User/Password";
-import { User } from "../../domain/entities/User/User";
+import { UserDTO } from "../../domain/dto/UserDTO";
+import { Email } from "../../domain/entities/user/Email";
+import { Name } from "../../domain/entities/user/Name";
+import { Password } from "../../domain/entities/user/Password";
+import { User } from "../../domain/entities/user/User";
 import { Id } from "../../domain/shared/Id";
 import { Mapper } from "./Mapper";
 

@@ -2,13 +2,13 @@ import { AppError } from "../../../../domain/shared/core/AppError";
 import { Either, Result, left, right } from "../../../../domain/shared/core/Result";
 import { UseCase } from "../../../../domain/shared/core/UseCase";
 import { Id } from "../../../../domain/shared/Id";
-import { Email } from "../../../../domain/entities/User/Email";
-import { Name } from "../../../../domain/entities/User/Name";
-import { Password } from "../../../../domain/entities/User/Password";
-import { User } from "../../../../domain/entities/User/User";
+import { Email } from "../../../../domain/entities/user/Email";
+import { Name } from "../../../../domain/entities/user/Name";
+import { Password } from "../../../../domain/entities/user/Password";
+import { User } from "../../../../domain/entities/user/User";
 import { CreateDTO } from "./CreateDTO";
 import { CreateErrors } from "./CreateErrors";
-import { IUserRepo } from "../../../../domain/repositories/user/userRepo";
+import { IUserRepo } from "../../../../domain/repositories/user/IUserRepo";
 import { CreateResponse } from "./CreateResponse";
 
 export class CreateUseCase implements UseCase<CreateDTO, Promise<CreateResponse>> {

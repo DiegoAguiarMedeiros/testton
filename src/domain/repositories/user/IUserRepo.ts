@@ -1,5 +1,5 @@
-import { Email } from "../../entities/User/Email";
-import { User } from "../../entities/User/User";
+import { Email } from "../../entities/user/Email";
+import { User } from "../../entities/user/User";
 
 
 export interface IUserRepo {

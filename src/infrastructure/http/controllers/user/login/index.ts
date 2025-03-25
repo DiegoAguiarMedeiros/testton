@@ -1,6 +1,6 @@
 
 import { LoginUseCase } from "../../../../../application/use-cases/user/login/LoginUseCase";
-import { userRepo } from "../../../../../domain/repositories/user";
+import { userRepo } from "../../../../../domain/repositories";
 import { authService } from "../../../../services";
 import { LoginController } from "./LoginController";
 

@@ -1,8 +1,8 @@
-import { Email } from "../../../../domain/entities/User/Email";
-import { JWTToken, RefreshToken } from "../../../../domain/entities/User/Jwt";
-import { Password } from "../../../../domain/entities/User/Password";
-import { User } from "../../../../domain/entities/User/User";
-import { IUserRepo } from "../../../../domain/repositories/user/userRepo";
+import { Email } from "../../../../domain/entities/user/Email";
+import { JWTToken, RefreshToken } from "../../../../domain/entities/user/Jwt";
+import { Password } from "../../../../domain/entities/user/Password";
+import { User } from "../../../../domain/entities/user/User";
+import { IUserRepo } from "../../../../domain/repositories/user/IUserRepo";
 import { AppError } from "../../../../domain/shared/core/AppError";
 import {  Result, left, right } from "../../../../domain/shared/core/Result";
 import { UseCase } from "../../../../domain/shared/core/UseCase";

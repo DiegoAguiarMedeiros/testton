@@ -6,8 +6,8 @@ import randtoken from 'rand-token'
 import { AbstractRedisClient } from './abstractRedisClient';
 import { IAuthService } from '../authService';
 import { authConfig } from '../../../config';
-import { RefreshToken, JWTClaims, JWTToken } from '../../../domain/entities/User/Jwt';
-import { User } from '../../../domain/entities/User/User';
+import { RefreshToken, JWTClaims, JWTToken } from '../../../domain/entities/user/Jwt';
+import { User } from '../../../domain/entities/user/User';
 
 /**
  * @class JWTClient

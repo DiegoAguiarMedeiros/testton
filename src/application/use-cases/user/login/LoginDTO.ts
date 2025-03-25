@@ -1,4 +1,4 @@
-import { JWTToken, RefreshToken } from "../../../../domain/entities/User/Jwt";
+import { JWTToken, RefreshToken } from "../../../../domain/entities/user/Jwt";
 
 
 export interface LoginDTO {

@@ -1,8 +1,8 @@
 
-import { UserMap } from "../../../../shared/mappers/userMap";
-import { Email } from "../../../entities/User/Email";
-import { User } from "../../../entities/User/User";
-import { IUserRepo } from "../userRepo";
+import { UserMap } from "../../../../shared/mappers/UserMap";
+import { Email } from "../../../entities/user/Email";
+import { User } from "../../../entities/user/User";
+import { IUserRepo } from "../IUserRepo";
 
 export class UserRepo implements IUserRepo {
     private models: any;
