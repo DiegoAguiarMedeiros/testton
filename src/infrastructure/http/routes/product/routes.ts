@@ -28,7 +28,7 @@ const productRouter = express.Router();
  *       - in: query
  *         name: orderBy
  *         schema:
- *           enum: [description, price,payment_day]
+ *           enum: [description, price,quantity]
  *         description: Column name to order by
  *       - in: query
  *         name: order
@@ -65,16 +65,16 @@ productRouter.get('/',
  *             properties:
  *               description:
  *                 type: string
- *                 description: Name of the cardholder
+ *                 description: Product Description
  *               price:
  *                 type: number
- *                 description: Amount of debt
+ *                 description: Product price 
  *               quantity:
  *                  type: number
- *                  description: Payment Day
+ *                   description: Products Quantity 
  *     responses:
  *       200:
- *         description: Debt created successfully
+ *         description: Product created successfully
  *       401:
  *         description: Unauthorized
  */
@@ -134,13 +134,13 @@ productRouter.delete(
  *             properties:
  *               description:
  *                 type: string
- *                 description: Description of Product
+ *                 description: Product Description
  *               price:
  *                 type: number
- *                 description: price of Product
+ *                 description: Product price 
  *               quantity:
  *                  type: number
- *                  description: quantity
+ *                   description: Products Quantity  
  *     responses:
  *       200:
  *         description: Product updated successfully
