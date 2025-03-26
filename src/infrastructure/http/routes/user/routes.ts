@@ -1,8 +1,6 @@
 import express from 'express'
-import { createUserController } from '../../controllers/user/create';
-import { loginController } from '../../controllers/user/login';
-import { getUserController } from '../../controllers/user/get';
 import { middleware } from '../..';
+import userController from '../../controllers/user';
 
 const userRouter = express.Router();
 
@@ -32,7 +30,7 @@ const userRouter = express.Router();
  *         description: Bad request
  */
 userRouter.post('/resgistration',
-  (req, res) => createUserController.execute(req, res)
+  (req, res) => userController.create.execute(req, res)
 );
 
 /**
@@ -59,7 +57,7 @@ userRouter.post('/resgistration',
  *         description: Unauthorized
  */
 userRouter.post('/login',
-  (req, res) => loginController.execute(req, res)
+  (req, res) => userController.login.execute(req, res)
 )
 
 /**
@@ -76,7 +74,7 @@ userRouter.post('/login',
  */
 userRouter.get('/info',
   middleware.ensureAuthenticated(),
-  (req, res) => getUserController.execute(req, res)
+  (req, res) => userController.get.execute(req, res)
 )
 
 export { userRouter };
