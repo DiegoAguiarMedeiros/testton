@@ -1,10 +1,6 @@
 import express from 'express'
 import { middleware } from '../..';
-import { createProductController } from '../../controllers/product/create';
-import { getAllIncomeController } from '../../controllers/product/getAll';
-import { getIncomeByIdController } from '../../controllers/product/getById';
-import { deleteProductController } from '../../controllers/product/delete';
-import { updatedProductController } from '../../controllers/product/update';
+import  productController  from '../../controllers/product';
 
 const productRouter = express.Router();
 
@@ -50,7 +46,7 @@ const productRouter = express.Router();
 
 productRouter.get('/',
   middleware.ensureAuthenticated(),
-  (req, res) => getAllIncomeController.execute(req, res)
+  (req, res) => productController.getAll.execute(req, res)
 );
 
 
@@ -85,7 +81,7 @@ productRouter.get('/',
 
 productRouter.post('/',
   middleware.ensureAuthenticated(),
-  (req, res) => createProductController.execute(req, res)
+  (req, res) => productController.create.execute(req, res)
 )
 
 
@@ -113,7 +109,7 @@ productRouter.post('/',
 productRouter.delete(
   '/:id',
   middleware.ensureAuthenticated(),
-  (req, res) => deleteProductController.execute(req, res)
+  (req, res) => productController.delete.execute(req, res)
 );
 
 /**
@@ -157,7 +153,7 @@ productRouter.delete(
 productRouter.patch(
   '/:id',
   middleware.ensureAuthenticated(),
-  (req, res) => updatedProductController.execute(req, res)
+  (req, res) => productController.update.execute(req, res)
 );
 
 /**
@@ -203,7 +199,7 @@ productRouter.patch(
 productRouter.get(
   '/:id',
   middleware.ensureAuthenticated(),
-  (req, res) => getIncomeByIdController.execute(req, res)
+  (req, res) => productController.get.execute(req, res)
 );
 
 export { productRouter };

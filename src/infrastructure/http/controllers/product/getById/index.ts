@@ -2,7 +2,7 @@ import { GetByIdUseCase } from '../../../../../application/use-cases/product/get
 import { productsRepo } from '../../../../../domain/repositories';
 import { GetByIdController } from './GetByIdController'
 
-const getIncomeByIdUseCase = new GetByIdUseCase(productsRepo);
-const getIncomeByIdController = new GetByIdController(getIncomeByIdUseCase);
+const getProductByIdUseCase = new GetByIdUseCase(productsRepo);
+const getProductByIdController = new GetByIdController(getProductByIdUseCase);
 
-export { getIncomeByIdController }
+export { getProductByIdController }

@@ -9,6 +9,5 @@ const createProductController = new CreateController(
 )
 
 export {
-    createProductUseCase,
     createProductController
 }

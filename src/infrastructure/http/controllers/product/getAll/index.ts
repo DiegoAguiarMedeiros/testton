@@ -3,7 +3,7 @@ import { GetAllUseCase } from "../../../../../application/use-cases/product/getA
 import { productsRepo } from "../../../../../domain/repositories";
 import { GetAllController } from "./GetAllController";
 
-const getAllIncomeUseCase = new GetAllUseCase(productsRepo);
-const getAllIncomeController = new GetAllController(getAllIncomeUseCase);
+const getAllProductUseCase = new GetAllUseCase(productsRepo);
+const getAllProductController = new GetAllController(getAllProductUseCase);
 
-export { getAllIncomeController, getAllIncomeUseCase }
+export { getAllProductController }
