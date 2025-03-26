@@ -21,7 +21,7 @@ export class Quantity extends ValueObject<QuantityProps> {
   public static create(props: QuantityProps): Result<Quantity> {
     const quantityResult = Guard.againstNullOrUndefined(props.quantity, 'quantity');
     if (quantityResult.isFailure) {
-      return Result.fail<Quantity>('Price: ' + quantityResult.getErrorValue())
+      return Result.fail<Quantity>(quantityResult.getErrorValue())
     }
 
 

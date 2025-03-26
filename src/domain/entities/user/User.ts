@@ -64,8 +64,10 @@ export class User {
   public static create(props: UserProps): Result<User> {
 
     const guardResult = Guard.againstNullOrUndefinedBulk([
+      { argument: props.id, argumentName: "id" },
       { argument: props.name, argumentName: "name" },
       { argument: props.email, argumentName: "email" },
+      { argument: props.password, argumentName: "password" },
     ]);
 
     if (guardResult.isFailure) {

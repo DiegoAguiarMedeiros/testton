@@ -80,7 +80,6 @@ export class Password extends ValueObject<IPasswordProps> {
 
   public static create(props: IPasswordProps): Result<Password> {
     const propsResult = Guard.againstNullOrUndefined(props.value, "password");
-
     if (propsResult.isFailure) {
       return Result.fail<Password>('Password: ' + propsResult.getErrorValue());
     } else {
@@ -91,7 +90,7 @@ export class Password extends ValueObject<IPasswordProps> {
           );
         }
       }
-
+      
       return Result.ok<Password>(
         new Password({
           value: props.value,

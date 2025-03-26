@@ -20,19 +20,19 @@ export class Description extends ValueObject<DescriptionProps> {
   }
 
   public static create(props: DescriptionProps): Result<Description> {
-    const descriptionResult = Guard.againstNullOrUndefined(props.description, 'Description');
+    const descriptionResult = Guard.againstNullOrUndefined(props.description, 'description');
     if (descriptionResult.isFailure) {
-      return Result.fail<Description>('Description: ' + descriptionResult.getErrorValue())
+      return Result.fail<Description>( descriptionResult.getErrorValue())
     }
 
     const minLengthResult = Guard.againstAtLeast(this.minLength, props.description);
     if (minLengthResult.isFailure) {
-      return Result.fail<Description>('Description: ' + minLengthResult.getErrorValue())
+      return Result.fail<Description>('description: ' + minLengthResult.getErrorValue())
     }
 
     const maxLengthResult = Guard.againstAtMost(this.maxLength, props.description);
     if (maxLengthResult.isFailure) {
-      return Result.fail<Description>('Description: ' + maxLengthResult.getErrorValue())
+      return Result.fail<Description>('description: ' + maxLengthResult.getErrorValue())
     }
 
     return Result.ok<Description>(new Description(props));

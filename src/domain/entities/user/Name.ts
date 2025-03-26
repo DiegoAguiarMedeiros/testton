@@ -22,17 +22,17 @@ export class Name extends ValueObject<NameProps> {
   public static create(props: NameProps): Result<Name> {
     const nameResult = Guard.againstNullOrUndefined(props.name, 'name');
     if (nameResult.isFailure) {
-      return Result.fail<Name>('Name: ' + nameResult.getErrorValue())
+      return Result.fail<Name>(nameResult.getErrorValue())
     }
 
     const minLengthResult = Guard.againstAtLeast(this.minLength, props.name);
     if (minLengthResult.isFailure) {
-      return Result.fail<Name>('Name: ' + minLengthResult.getErrorValue())
+      return Result.fail<Name>('name: '+minLengthResult.getErrorValue())
     }
 
     const maxLengthResult = Guard.againstAtMost(this.maxLength, props.name);
     if (maxLengthResult.isFailure) {
-      return Result.fail<Name>('Name: ' + maxLengthResult.getErrorValue())
+      return Result.fail<Name>('name: '+maxLengthResult.getErrorValue())
     }
 
     return Result.ok<Name>(new Name(props));

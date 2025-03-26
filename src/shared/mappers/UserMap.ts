@@ -4,6 +4,7 @@ import { Name } from "../../domain/entities/user/Name";
 import { Password } from "../../domain/entities/user/Password";
 import { User } from "../../domain/entities/user/User";
 import { Id } from "../../domain/shared/Id";
+import { UniqueEntityID } from "../../domain/shared/UniqueEntityID";
 import { Mapper } from "./Mapper";
 
 export class UserMap implements Mapper<User> {
@@ -16,20 +17,29 @@ export class UserMap implements Mapper<User> {
   }
 
   public static toDomain(raw: any): User {
-    const IdOrError = Id.create(raw.id);
-    IdOrError.isFailure ? console.error(IdOrError.getErrorValue()) : '';
+
+    const IdOrError = Id.create(new UniqueEntityID(raw.id));
+    if (!raw.id) {
+      throw new Error(`id is null or undefined`);
+    }
 
     const NameOrError = Name.create({ name: raw.name });
-    NameOrError.isFailure ? console.error(NameOrError.getErrorValue()) : '';
+    if (NameOrError.isFailure) {
+      throw new Error(`${NameOrError.getErrorValue()}`);
+    }
 
     const PasswordOrError = Password.create({
       value: raw.password,
       hashed: true,
     });
-    PasswordOrError.isFailure ? console.error(PasswordOrError.getErrorValue()) : '';
-
+    if (PasswordOrError.isFailure) {
+      throw new Error(`${PasswordOrError.getErrorValue()}`);
+    }
+    
     const EmailOrError = Email.create(raw.email);
-    EmailOrError.isFailure ? console.error(EmailOrError.getErrorValue()) : '';
+    if (EmailOrError.isFailure) {
+      throw new Error(`${EmailOrError.getErrorValue()}`);
+    }
 
 
     const userOrError = User.create(
@@ -44,6 +54,7 @@ export class UserMap implements Mapper<User> {
     userOrError.isFailure ? console.error(userOrError.getErrorValue()) : '';
 
     return userOrError.getValue();
+    
   }
 
   public static async toPersistence(user: User): Promise<any> {
@@ -55,7 +66,6 @@ export class UserMap implements Mapper<User> {
         password = await user.password.getHashedValue();
       }
     }
-
     return {
       id: user.id.value,
       email: user.email.value,

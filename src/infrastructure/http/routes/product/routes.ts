@@ -183,7 +183,17 @@ productRouter.patch(
  *               properties:
  *                 id:
  *                   type: string
- *                 name:
+ *                 userId:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 price:
+ *                   type: number
+ *                 quantity:
+ *                   type: number
+ *                 createdAt:
+ *                   type: string
+ *                 updatedAt:
  *                   type: string
  *       401:
  *         description: Unauthorized
@@ -195,7 +205,5 @@ productRouter.get(
   middleware.ensureAuthenticated(),
   (req, res) => getIncomeByIdController.execute(req, res)
 );
-
-
 
 export { productRouter };

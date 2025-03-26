@@ -61,7 +61,7 @@ export class LoginUseCase implements UseCase<LoginDTO, Promise<LoginResponse>> {
 
         const refreshToken: RefreshToken = this.authService
           .createRefreshToken();
-
+          
         user.setAccessToken(accessToken, refreshToken);
 
         

@@ -21,7 +21,7 @@ export class Price extends ValueObject<PriceProps> {
   public static create(props: PriceProps): Result<Price> {
     const priceResult = Guard.againstNullOrUndefined(props.price, 'price');
     if (priceResult.isFailure) {
-      return Result.fail<Price>('Price: ' + priceResult.getErrorValue())
+      return Result.fail<Price>(priceResult.getErrorValue())
     }
 
 

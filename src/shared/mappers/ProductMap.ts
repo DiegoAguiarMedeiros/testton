@@ -4,6 +4,7 @@ import { Price } from "../../domain/entities/product/Price";
 import { Product } from "../../domain/entities/product/Product";
 import { Quantity } from "../../domain/entities/product/Quantity";
 import { Id } from "../../domain/shared/Id";
+import { UniqueEntityID } from "../../domain/shared/UniqueEntityID";
 import { Mapper } from "./Mapper";
 
 export class ProductMap implements Mapper<Product> {
@@ -19,21 +20,31 @@ export class ProductMap implements Mapper<Product> {
 
   public static toDomain(raw: any): Product {
     const DescriptionOrError = Description.create({ description: raw.description });
-    DescriptionOrError.isFailure ? console.error(DescriptionOrError.getErrorValue()) : '';
+    if (DescriptionOrError.isFailure) {
+      throw new Error(`${DescriptionOrError.getErrorValue()}`);
+    }
 
     const PriceOrError = Price.create({ price: raw.price });
-    PriceOrError.isFailure ? console.error(PriceOrError.getErrorValue()) : '';
+    if (PriceOrError.isFailure) {
+      throw new Error(`${PriceOrError.getErrorValue()}`);
+    }
     
     const QuantityOrError = Quantity.create({ quantity: raw.quantity });
-    QuantityOrError.isFailure ? console.error(QuantityOrError.getErrorValue()) : '';
+    if (QuantityOrError.isFailure) {
+      throw new Error(`${QuantityOrError.getErrorValue()}`);
+    }
 
-    const UserIdOrError = Id.create(raw.user_id);
-    UserIdOrError.isFailure ? console.error(UserIdOrError.getErrorValue()) : '';
+    const UserIdOrError = Id.create(new UniqueEntityID(raw.user_id));
+    if (!raw.user_id) {
+      throw new Error(`user_id is null or undefined`);
+    }
 
-    const IdOrError = Id.create(raw.id);
-    IdOrError.isFailure ? console.error(IdOrError.getErrorValue()) : '';
+    const IdOrError = Id.create(new UniqueEntityID(raw.id));
+    if (!raw.id) {
+      throw new Error(`id is null or undefined`);
+    }
 
-    const debtOrError = Product.create(
+    const productOrError = Product.create(
       {
         id: IdOrError.getValue(),
         userId: UserIdOrError.getValue(),
@@ -43,9 +54,9 @@ export class ProductMap implements Mapper<Product> {
       }
     );
 
-    debtOrError.isFailure ? console.error(debtOrError.getErrorValue()) : '';
+    productOrError.isFailure ? console.error(productOrError.getErrorValue()) : '';
 
-    return debtOrError.getValue();
+    return productOrError.getValue();
   }
 
   public static async toPersistence(product: Product): Promise<any> {
