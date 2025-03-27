@@ -1,6 +1,7 @@
 import express from 'express'
 import { middleware } from '../..';
 import productController from '../../controllers/product';
+import { rateLimiter } from '../../../../shared/RateLimiter';
 
 const productRouter = express.Router();
 
@@ -47,6 +48,7 @@ const productRouter = express.Router();
 
 productRouter.get('/',
   middleware.ensureAuthenticated(),
+  rateLimiter,
   (req, res) => productController.getAll.execute(req, res)
 );
 
@@ -202,6 +204,7 @@ productRouter.patch(
 productRouter.get(
   '/:id',
   middleware.ensureAuthenticated(),
+  rateLimiter,
   (req, res) => productController.get.execute(req, res)
 );
 
