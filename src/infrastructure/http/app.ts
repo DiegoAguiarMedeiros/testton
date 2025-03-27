@@ -9,15 +9,24 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import { v1Router } from './routes';
+import rateLimit from 'express-rate-limit';
 
 const app = express();
 
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 500, 
+  max: 10, 
+  message: "Too many requests. Please try again later.",
+  headers: true, 
+});
+
+app.use(helmet())
+app.use(limiter);
 
 app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(compression())
-app.use(helmet())
 app.use(cookieParser());
 
 const swaggerDefinition = {
