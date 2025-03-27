@@ -7,4 +7,5 @@ export interface IProductRepo {
   getById(id: string, userId: string): Promise<Product | null>;
   update(id: string, userId: string, product: Product): Promise<boolean>;
   delete(id: string): Promise<void>
+  getByDescription(description: string, userId: string): Promise<boolean>
 }

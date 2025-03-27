@@ -34,8 +34,6 @@ export class CreateController extends BaseController {
         const error = result.value;
 
         switch (error.constructor) {
-          case CreateErrors.NameTakenError:
-            return this.conflict(res, error.getErrorValue())
           case CreateErrors.EmailAlreadyExistsError:
             return this.conflict(res, error.getErrorValue())
           default:

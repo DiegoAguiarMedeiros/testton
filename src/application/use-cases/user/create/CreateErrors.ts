@@ -15,7 +15,7 @@ export namespace CreateErrors {
   export class NameTakenError extends Result<UseCaseError> {
     constructor(name: string) {
       super(false, {
-        message: `The name ${name} was already taken`
+        message: `The description ${name} was already taken`
       } as UseCaseError)
     }
   }

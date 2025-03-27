@@ -4,10 +4,10 @@ import { UseCaseError } from "../../../../domain/shared/core/UseCaseError";
 
 export namespace CreateErrors {
 
-  export class NameTakenError extends Result<UseCaseError> {
+  export class DescriptionExist extends Result<UseCaseError> {
     constructor(name: string) {
       super(false, {
-        message: `The name ${name} was already taken`
+        message: `The description '${name}' already exist`
       } as UseCaseError)
     }
   }

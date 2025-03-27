@@ -4,7 +4,7 @@ import { Either, Result } from "../../../../domain/shared/core/Result";
 import { CreateErrors } from "./CreateErrors";
 
 export type CreateResponse = Either<
-  CreateErrors.NameTakenError |
+  CreateErrors.DescriptionExist |
   AppError.UnexpectedError |
   Result<any>,
   Result<void>

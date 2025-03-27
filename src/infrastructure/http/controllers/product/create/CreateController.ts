@@ -32,7 +32,7 @@ export class CreateController extends BaseController {
         const error = result.value;
 
         switch (error.constructor) {
-          case CreateErrors.NameTakenError:
+          case CreateErrors.DescriptionExist:
             return this.conflict(res, error.getErrorValue())
           default:
             return this.fail(res, error.getErrorValue());

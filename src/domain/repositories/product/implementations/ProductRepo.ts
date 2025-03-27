@@ -11,6 +11,18 @@ export class ProductRepo implements IProductRepo {
         this.models = models;
     }
 
+    async getByDescription(description: string, userId: string): Promise<boolean> {
+        const model = this.models.Products;
+        const product = await model.findOne({
+            where: {
+                description,
+                user_id: userId,
+            },
+            raw: true,
+        });
+        return !!product;
+    }
+
     async update(id: string, userId: string, product: Product): Promise<boolean> {
         const model = this.models.Products;
         const rawProduct = await ProductMap.toPersistence(product);

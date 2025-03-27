@@ -9,6 +9,7 @@ import { UseCase } from "../../../../domain/shared/core/UseCase";
 import { Id } from "../../../../domain/shared/Id";
 import { UniqueEntityID } from "../../../../domain/shared/UniqueEntityID";
 import { CreateDTO } from "./CreateDTO";
+import { CreateErrors } from "./CreateErrors";
 import { CreateResponse } from "./CreateResponse";
 
 
@@ -21,6 +22,15 @@ export class CreateUseCase implements UseCase<CreateDTO, Promise<CreateResponse>
   }
 
   async execute(request: CreateDTO): Promise<CreateResponse> {
+
+    const descriptionExist = await this.repo.getByDescription(request.description,request.userId);
+
+    if (descriptionExist) {
+      return left(
+        new CreateErrors.DescriptionExist(request.description)
+      ) as CreateResponse;
+    }
+
     const DescriptionOrError = Description.create({ description: request.description });
     const PriceOrError = Price.create({ price: request.price });
     const QuantityOrError = Quantity.create({ quantity: request.quantity });
