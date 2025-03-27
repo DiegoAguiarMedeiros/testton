@@ -11,7 +11,8 @@
     "test:coverage": "jest --coverage",
     "docker:up": "docker-compose up -d",
     "docker:build": "docker-compose up --build -d",
-    "docker:run": "docker-compose stop app && docker-compose up app --build"
+    "docker:run": "docker-compose stop app && docker-compose up app --build",
+    "docker:stop": "docker-compose down"
   },
   "repository": {
     "type": "git",
